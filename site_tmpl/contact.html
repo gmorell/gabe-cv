@@ -1,0 +1,23 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+    <h2 class="cvtitle">Contact Information</h2>
+    <div class="row cvitem">
+        <div class="col-md-10 cvdata">
+            Phone: +1 (617) 657-4223 <br/>
+            EMail: <a href="mailto:gmp@h4xmb.org">gmp@h4xmb.org</a> <br />
+            Twitter: <a href="http://www.twitter.com/gmorellp/">gmorellp</a> <br />
+        </div>
+    </div>
+    <h2 class="cvtitle">Links</h2>
+    <div class="row cvitem">
+        
+        <div class="col-md-10 cvdata">
+            <a href="http://github.com/gmorell">My GitHub</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load lineage %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Gabriel Morell &middot;
+            {% block title %} SET A TITLE {% endblock %}
+        </title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="True"/>
+        <meta name="google-site-verification" content="x2wL9f7XpTQVNqVfcUZiP36q4fsF1uIOPbwa7IT8hx8" />
+        
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}style.css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        
+        <style>
+            .cvitem {
+                border-left:1px solid #777;
+/*                 border-top:1px solid #777; */
+/*                 margin-top:10px; */
+                }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+
+      <!-- Static navbar -->
+        <span style="font-size:500%">Gabriel Morell</span>
+        <div class="navbar pull-right" role="navigation">
+            <div class="container-fluid">
+                {% block nav %}
+                <ul class="nav nav-pills navbar-right">
+                    <li class="{% ancestor '/$' %}"><a href="{% url "msite.views.index" %}">Home</a></li>
+                    <li class="{% ancestor '/cv/' %}"><a href="{% url "cv.views.index" %}">CV</a></li>
+                    <li class="{% ancestor '/log/' %}"><a href="{% url "projects.views.log" %}">Log</a></li>
+                    <li class="{% ancestor '/projects/' %}"><a href="{% url "projects.views.project_list" %}">Projects</a></li>
+                    <li class="{% ancestor '/contact/' %}"><a href="{% url "msite.views.contact" %}">Contact</a></li>
+                </ul>
+                {% endblock %}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="inner cover">
+                    {% block content %}
+                    <h1 class="cover-heading">Cover your page.</h1>
+                    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+                    <p class="lead">
+                    <a href="#" class="btn btn-lg btn-default">Learn more</a>
+                    </p>
+                    {% endblock %}
+        </div>
+
+                    
+    </div>
+    </body>
+</html>

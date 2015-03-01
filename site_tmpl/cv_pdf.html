@@ -1,0 +1,71 @@
+{% load markup %}
+
+{% block title %}
+<h1>Gabriel Morell-Pacheco</h1>
+<p>gmorell@wpi.edu / www.gmp.pw <br />
+(617) 657-4223</p>
+{% endblock %}
+{% block nav %}
+{% endblock %}
+
+{% block extrahead %}
+<style type="text/css">
+    h1 {
+        font-size:30px;
+        padding-bottom:0px;
+        margin-bottom:0px;
+    }
+    h2 {
+        font-size:14px;
+    }
+    @page {
+/*         size: {{ pagesize }}; */
+        margin: 1cm;
+        @frame footer {
+            -pdf-frame-content: footerContent;
+            bottom: 0cm;
+            margin-left: 9cm;
+            margin-right: 9cm;
+            height: 1cm;
+        }
+    }
+    .floatr {
+        float:right;
+    }
+    .largerow {
+        padding-left:6px;
+    }
+    .entry {
+        padding-left:12px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <table>
+    {% for s in sects %}
+        <tr>
+            <td colspan="3"><h2>{{ s }}</h2></td>
+        </tr>
+            {% for e in s.entry_set.all %}
+                <tr class="largerow">
+                    <td colspan="5">
+                        <strong>{{ e }}</strong>
+                        <div class="entry">{{ e.desc|markdown }}</div>
+                    </td>
+                    <td valign="top">
+                        <em>
+                        {% if e.date_start and e.date_end %}
+                        {{e.date_start|date:"M Y"}} to {{e.date_end|date:"M Y"}}
+                        {% endif %}
+                        {% if e.date_start and not e.date_end %}
+                        {{e.date_start|date:"M Y"}} to Present
+                        {% endif %}
+                        
+                        </em>
+                    </td>
+                </tr>
+            {% endfor %}
+    {% endfor %}
+    </table>
+{% endblock %}

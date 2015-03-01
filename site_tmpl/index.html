@@ -1,0 +1,17 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<h1>Hello Internet!</h1>
+    <div class="cvitem">
+        <div class="cvdata">
+            This is my page. 
+            If you've stumbled upon this place then you must have been looking for something.
+            I'm an internet engineer with an interest in data aggregation and bit collecting.
+            I'm presently studying Electrical and Computer Engineering at WPI.<br />
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base_2014.html' %}
+{% load markdown_deux_tags %}
+
+{% block title %}
+CV
+{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        {% for s in sects %}
+        <li><a class="lnav" href="#{{ s.anchortitle }}">{{ s }}</a></li>
+        {% endfor %}
+        <li class="pull-right"><a href="/cv/pdf/">PDF</a></li>
+    </ol>
+    
+    {% for s in sects %}
+        <div class="row">
+            <h2 id="{{ s.anchortitle }}">{{ s }}</h2>
+        </div>
+        
+            <div class="cvdata">
+        
+            {% for e in s.entry_set.all %}
+                <div class="row cvitem">       
+                    <div class="col-md-10">
+                        <strong>{{ e }}</strong>
+                        <p>
+                        {{ e.desc|markdown:"tables" }}
+                        </p>
+                    </div>
+                    <div class="col-md-2 text-muted">
+                    {% if e.date_start and e.date_end %}
+                    {{e.date_start|date:"M Y"}} to {{e.date_end|date:"M Y"}}
+                    {% endif %}
+                    {% if e.date_start and not e.date_end %}
+                    {{e.date_start|date:"M Y"}} to Present
+                    {% endif %}
+                    </div>
+                    
+                </div>        
+            {% endfor %}
+            </div>
+        
+    {% endfor %}
+{% endblock %}

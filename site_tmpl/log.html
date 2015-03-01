@@ -1,0 +1,45 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for e in entries %}
+        <h1>{{ e.title }} </h1>
+        <div class="row cvitem">
+            
+            <div class="col-md-10 cvdata">
+                {{ e.body|inline_thumbnails|markdown|safe }}
+            </div>
+            <div class="col-md-2 text-muted">
+                <em>posted {{e.posted}}</em><br />
+                <a href="{% url "projects.views.log_perma" project=e.project.slug slug=e.slug %}">perma</a>
+                &middot;
+                <a href="{% url "projects.views.log_project" slug=e.project.slug %}">all entries</a>
+            </div>
+            
+        </div>
+        {% endfor %}
+    {% else %}
+        {% for e in entries %}
+        <div class="cvitem">
+        
+        <div class="floatr muted">
+            <em>posted {{e.posted}}</em><br />
+            <a href="{% url "projects.views.log_perma" project=e.project.slug slug=e.slug %}">perma</a>
+            &middot;
+            <a href="{% url "projects.views.log_project" slug=e.project.slug %}">all entries</a>
+        </div>
+        <div class="cvtitle">{{ e.title }} </div>
+        
+        <div class="cvdata">
+            {{ e.body|inline_thumbnails|markdown|safe }}
+        </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Gabriel Morell &middot;
+            {% block title %} SET A TITLE {% endblock %}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="True"/>
+        <meta name="google-site-verification" content="x2wL9f7XpTQVNqVfcUZiP36q4fsF1uIOPbwa7IT8hx8" />
+        <link href="{{ STATIC_URL }}css/bigger.css" type="text/css" rel="stylesheet" />
+        {% block extrahead %}
+        <link href="{{ STATIC_URL }}css/resp.css" type="text/css" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="c"></div>
+            <div class="heading">Gabriel Morell</div>
+            {% block nav %}
+            <div class="subheading">
+                <div class="lnav"><!--Internet Engineer--></div>
+                <div class="nav">
+                    <ul>
+                    <li><a href="{% url "msite.views.index" %}">Home</a></li>
+                    <li><a href="{% url "cv.views.index" %}">CV</a></li>
+                    <li><a href="{% url "projects.views.log" %}">Log</a></li>
+                    <li><a href="{% url "projects.views.project_list" %}">Projects</a></li>
+                    <li><a href="{% url "msite.views.contact" %}">Contact</a></li>
+                    </ul>
+                </div> 
+                
+                <div class="floatc"></div>
+            </div>
+            {% endblock %}
+            
+        <div class="content">
+        {% block content %}
+            SET SOME CONTENT YO.
+        {% endblock %}
+        </div>
+    </body>
+</html>

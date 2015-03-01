@@ -1,0 +1,36 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index - {{ project }}
+{% endblock %}
+
+{% block content %}
+    
+    <h2>
+    {{ project }}
+    </h2>
+
+    <div class="row cvitem">
+        <div class="col-md-12 cvdata">
+                <p class="lead">{{ project.blurb }}</p>
+        </div>
+    </div>
+        
+    {% for e in entries %}
+    <h3 class="cvtitle">{{ e.title }} </h3>
+    <div class="row cvitem">
+        
+    
+    
+        <div class="col-md-10 cvdata">
+            {{ e.body|inline_thumbnails|markdown|safe }}
+        </div>
+        <div class="col-md-2 text-muted">
+            <em>posted {{e.posted}}</em><br />
+            <a href="{% url "projects.views.log_perma" e.project.slug e.slug %}">perma</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

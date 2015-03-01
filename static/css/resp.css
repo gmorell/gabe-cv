@@ -1,0 +1,50 @@
+/* mobile */
+@media (max-width: 767px) {
+    .body {
+        font-size:12px;
+    }
+    .wrap {
+        width: inherit;
+    }
+    .c {clear:both;}
+    .lnav {
+        float:left;
+        clear:left;
+        font-size:200%;
+        }
+    .subheading .nav {
+        float:left;
+        clear: left;
+        font-size:200%;
+        margin: 0px;
+    }
+    .subheading .nav ul {
+        margin: 0px;
+        padding:0px;
+        }
+    .subheading .nav ul li {
+        float: left;
+        clear: left;
+        margin:0px;
+    }
+    .content {
+        font-size:150%;
+        }
+    .content img {
+        width: 100%;
+        }
+    /* cv */
+    .cvmininav{
+    font-size:100%;
+    }
+    .cvmininav ul{
+        list-style:none;
+        margin:0px;
+        padding:0px;
+    }
+    .cvmininav ul li{
+        float:left;
+        margin:0px;
+        padding:0px;
+    }
+}

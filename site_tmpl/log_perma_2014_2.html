@@ -1,0 +1,52 @@
+{% extends 'base_2014_2.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop {{e.project.display_class}}">
+            {{ e.title }} 
+            <div class="right">
+                <small class="whitemuted"><em>posted {{e.posted}}</em><br />
+                <a href="{% url "projects.views.log_project" slug=e.project.slug %}">all entries</a>
+                </small>
+            </div>
+        </div>
+        <div class="boxxybottom">
+            {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|markdown|safe }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-6 large-3 columns">
+        {% with preventry=e.get_prev_in_proj %}
+            {% if preventry %}
+                <a class="button radius" href="{% url "projects.views.log_perma" preventry.project.slug preventry.slug %}">
+                    <span class="glyphicon glyphicon-chevron-left"></span> {{ preventry }}
+                </a>
+            {% else %}
+                &nbsp;
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="small-6 large-3 large-offset-6 columns">
+    {% with nextentry=e.get_next_in_proj %}
+            {% if nextentry %}
+                <a class="button radius" href="{% url "projects.views.log_perma" nextentry.project.slug nextentry.slug %}">
+                    {{ nextentry }}
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            {% else %}
+                &nbsp;
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base_2014_2.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+{% block content %}
+
+
+
+{% for p in projects %}
+    <div class="large-4 columns boxxy">
+        <div class="boxxytop {{p.display_class}}">
+            <strong>{{ p.name }}</strong>
+            <div class="right">
+                {% for l in p.links.all %}
+                <a href="{{ l.url }}"><i class="fa fa-lg {{l.icon}}" title="github"></i></a>
+                {% endfor %}
+                
+                {% if p.latest_entry %}
+                <a href="{% url "projects.views.log_project" p.slug %}"><i class="fa fa-list-alt"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="boxxybottom">
+            {{ p.blurb|inline_thumbnails|markdown|safe }}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

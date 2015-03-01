@@ -1,0 +1,55 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for p in projects %}
+        <h3>{{ p.name }} </h3>
+        <div class="row cvitem">
+            <div class="col-md-12 cvdata">
+                {{ p.blurb|inline_thumbnails|markdown|safe }}
+                <br />
+                
+                {% if p.latest_entry %}
+                    <h4>Log Entries </h4>
+                    <p>Latest Entry: <a href="{% url "projects.views.log_perma" p.slug p.latest_entry.slug %}">{{ p.latest_entry }}</a> <em> on {{ p.latest_entry.posted }}</em></p>
+                    <p>First: <a href="{% url "projects.views.log_perma" p.slug p.first_entry.slug %}">{{ p.first_entry }}</a> <em> on {{ p.first_entry.posted }}</em></p>
+                    <p><a href="{% url "projects.views.log_project" p.slug %}">All Entries</a></p>
+                {% else %}
+                <em>No Entries</em>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        {% for p in projects %}
+        <div class="cvitem">
+        
+            <div class="cvtitle">{{ p.name }} </div>
+            
+            <div class="cvdata">
+                {{ p.blurb|inline_thumbnails|markdown|safe }}
+                <br />
+                
+                {% if p.latest_entry %}
+                <div class="cvheader">Log Entries </div>
+                <p>Latest Entry: <a href="{% url "projects.views.log_perma" p.slug p.latest_entry.slug %}">{{ p.latest_entry }}</a> <em> on {{ p.latest_entry.posted }}</em></p>
+                <p>First: <a href="{% url "projects.views.log_perma" p.slug p.first_entry.slug %}">{{ p.first_entry }}</a> <em> on {{ p.first_entry.posted }}</em></p>
+                <p><a href="{% url "projects.views.log_project" p.slug %}">All Entries</a></p>
+                {% else %}
+                <em>No Entries</em>
+                {% endif %}
+            </div>
+            
+            <div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

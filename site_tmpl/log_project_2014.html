@@ -1,0 +1,34 @@
+{% extends 'base_2014_2.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index - {{ project }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <h2> {{ project }} </h2>
+        <p class="lead">{{ project.blurb }}</p>
+    </div>
+        
+    {% for e in entries %}
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop {{project.display_class}}">
+            <strong>{{ e.title }}</strong>
+            <div class="right">
+                <small class="whitemuted"><em>posted {{e.posted}}</em><br />
+                <a href="{% url "projects.views.log_perma" e.project.slug e.slug %}">perma</a>
+                </small>
+            </div>
+        </div>
+    
+        <div class="boxxybottom">
+                {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|markdown|safe }}
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

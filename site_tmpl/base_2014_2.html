@@ -1,0 +1,211 @@
+{% load lineage %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/foundation.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/foundation.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/normalize.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!--<link rel="stylesheet" href="{{ STATIC_URL }}2014-2.css">-->
+        <style>
+        @keyframes animate_bg {
+            from { background-position: 0 0; }
+            to { background-position: 100% 0; }
+        }
+        @-webkit-keyframes animate_bg { 
+            from { background-position: 0 0; }
+            to { background-position: 100% 0; }
+        }
+    
+        .icon-bar {
+            background: #1A3E6F;
+        }
+        .icon-bar a:hover {
+            background: #114C8D;
+        }
+
+        .miniheader {
+            height: 400px;
+            background-color: #223150;
+            background-image: url("{{ STATIC_URL }}images/headers/dotted_bg.png");
+            background-repeat: repeat-x;
+            background-position: 0px 0px;
+            color: #ddd;
+            padding:30px;
+            font-size: 128px;
+            animation: animate_bg 180s linear infinite; 
+            -webkit-animation: animate_bg 180s linear infinite; 
+        }
+        .miniheader a {
+            color: #ddd;
+        }
+        .boxxy {
+/*             box-shadow: 10px 10px 5px #AAAAAA; */
+/*             margin: 0px; */
+/*             padding:0px */
+            margin-bottom:20px;
+            
+        }
+        .boxxytop {
+            box-shadow: 0px 2px 5px #AAAAAA;
+            background: #0066CA;
+            min-height: 44px;
+            padding:12px;
+            font-size:175%;
+            color:#efefef;
+            border-top-left-radius:2px;
+            border-top-right-radius:2px;
+        }
+        .boxxytop a {
+            color:#cdcdcd;
+        }
+        .boxxybottom {
+            box-shadow: 0px 2px 5px #AAAAAA;
+            background: #fefefe;
+            min-height:200px;
+            padding:12px;
+            font-size:150%;
+            color:#111;
+            
+        }
+        .muted {color:#888; font-size:50%}
+        .whitemuted {color:#DDD; font-size:50%}
+        .contentarea { width: 100% !important; }
+        .bh_dots {
+            background: #223150 url("{{ STATIC_URL }}images/headers/dotted_bg.png");
+        }
+        .bh_hexenes {
+            background: #223150 url("{{ STATIC_URL }}images/headers/hexenes.png");
+        }
+        .bh_squares {
+            background: #223150 url("{{ STATIC_URL }}images/headers/squares.png");
+        }
+        .bh_wifis {
+            background: #223150 url("{{ STATIC_URL }}images/headers/wifis.png");
+        }
+        .bh_wifis_s {
+            background: #223150 url("{{ STATIC_URL }}images/headers/wifis_s.png");
+        }
+        .bh_hexagons {
+            background: #223150 url("{{ STATIC_URL }}images/headers/hexagons.png");
+        }
+        .bh_cubes {
+            background: #223150 url("{{ STATIC_URL }}images/headers/cubes.png");
+        }
+        .bh_waggles {
+            background: #223150 url("{{ STATIC_URL }}images/headers/waggles.png");
+        }
+        </style>
+    </head>
+    <body>
+        <div class="miniheader">
+        <a href="/-">Gabriel Morell</a>
+        </div>
+        <div class="sticky">
+            <nav class="top-bar" data-topbar data-options="sticky_on: large">
+                <section class="top-bar-section">
+                <div class="icon-bar five-up">
+                    <!--<a href="{% url "msite.views.index" %}" class="item active">-->
+                    <a href="{% url "msite.views.index_2014" %}" class="item active">
+                        <i class="fa fa-home fa-inverse"></i>
+                        <label>Home</label>
+                    </a>
+                    <!--<a href="{% url "cv.views.index" %}" class="item">-->
+                    <a href="{% url "cv.views.index_2014" %}" class="item">
+                        <i class="fa fa-paperclip fa-inverse"></i>
+                        <label>CV</label>
+                    </a>
+                    <!--<a href="{% url "projects.views.log" %}" class="item">-->
+                    <a href="{% url "projects.views.log_2014" %}" class="item">
+                        <i class="fa fa-list fa-inverse"></i>
+                        <label>Log</label>
+                    </a>
+<!--                     <a href="{% url "projects.views.project_list" %}" class="item"> -->
+                    <a href="{% url "projects.views.project_list_2014" %}" class="item">
+                        <i class="fa fa-code-fork fa-inverse"></i>
+                        <label>Projects</label>
+                    </a>
+<!--                     <a href="{% url "msite.views.contact" %}" class="item"> -->
+                    <a href="{% url "msite.views.contact_2014" %}" class="item">
+                        <i class="fa fa-envelope-o fa-inverse"></i>
+                        <label>Contact</label>
+                    </a>
+                </div>
+                </section>
+            </nav>
+        </div>
+        <br /><br /><br /><br /><br />
+        {% block content %}
+        <div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_hexenes">
+                    <strong>Adventures in Adressable LEDS</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_waggles">
+                    <strong>Home Automation via IRC</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_squares">
+                    <strong>LED Fade Board</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_hexagons">
+                    <strong>Some other header</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_wifis_s">
+                    <strong>Nexturn Light Bulbs RE</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+            <div class="medium-6 large-4 columns boxxy">
+                <div class="boxxytop bh_cubes">
+                    <strong>Potato</strong>
+                </div>
+                <div class="boxxybottom">
+                    I like CVs
+                    <br />
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/fastclick.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/jquery.cookie.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/modernizr.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/placeholder.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation/foundation.magellan.min.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        
+    </body>
+</html>
+

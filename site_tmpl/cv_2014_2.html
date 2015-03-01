@@ -1,0 +1,39 @@
+{% extends 'base_2014_2.html' %}
+{% load markdown_deux_tags %}
+{% block content %}
+
+
+
+<div class="row">
+    {% for s in sects %}
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop bh_dots">
+            <strong>{{ s.anchortitle }}</strong>
+        </div>
+        <div class="boxxybottom">
+            {% for e in s.entry_set.all %}
+                <div class="row">       
+                    <div class="large-10 columns">
+                        <strong>{{ e }}</strong>
+                        <p>
+                        {{ e.desc|markdown:"tables" }}
+                        </p>
+                    </div>
+                    <div class="large-2 columns muted">
+                    {% if e.date_start and e.date_end %}
+                    {{e.date_start|date:"M Y"}} to {{e.date_end|date:"M Y"}}
+                    {% endif %}
+                    {% if e.date_start and not e.date_end %}
+                    {{e.date_start|date:"M Y"}} to Present
+                    {% endif %}
+                    <br />
+                    <br />
+                    </div>
+                    
+                </div>        
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

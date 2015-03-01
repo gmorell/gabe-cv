@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+{% block title %}
+CV
+{% endblock %}
+
+{% block content %}
+    <div class="cvitem">
+        <div class="cvmininav">
+            <ul>
+            {% for s in sects %}
+                <li>
+                    <a class="lnav" href="#{{ s.anchortitle }}">{{ s }}</a> &emsp;
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="floatc"></div>
+    </div>
+    
+    {% for s in sects %}
+        <div class="cvitem">
+            <div class="cvtitle" id="{{ s.anchortitle }}">{{ s }}</div>
+            <div class="cvdata">
+            {% for e in s.entry_set.all %}
+                <div class="floatr muted">
+                {% if e.date_start and e.date_end %}
+                {{e.date_start|date:"M Y"}} to {{e.date_end|date:"M Y"}}
+                {% endif %}
+                {% if e.date_start and not e.date_end %}
+                {{e.date_start|date:"M Y"}} to Present
+                {% endif %}
+                </div>
+                
+                <div class="cvheader">
+                    {{ e }}
+                </div>
+                <div class="cvdesc">
+                    {{ e.desc|markdown:"tables" }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

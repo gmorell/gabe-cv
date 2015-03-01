@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper]{moderncv}
+\moderncvcolor{blue}
+\moderncvstyle{classic}
+
+\usepackage[scale=0.92]{geometry}
+
+\name{Gabriel}{Morell}
+\phone{+1 (617) 657-4223 }
+\email{gmp@gmp.pw}
+\homepage{gmp.pw}
+\social[github]{gmorellp}
+
+\begin{document}
+\makecvtitle
+{% for s in sects %}
+\section{{{ s }}}
+{% for e in s.entry_set.all %}
+\cventry{{% if e.date_start and e.date_end %}{{e.date_start|date:"M Y"}} - {{e.date_end|date:"M Y"}}{% endif %}{% if e.date_start and not e.date_end %}{{e.date_start|date:"M Y"}} - Present{% endif %}}{{{e}}}{}{}{}{{{ e.desc}}}%
+% \begin{itemize}%
+% \item Maintained and developed C++ API libraries;
+% \item Introduced acceptance testing and functional testing on a large software project;
+% \item Built internal business management web applications. Project lead on admistrative portal project;
+%   \begin{itemize}%
+%   \item Integrating with a variety of other systems;
+%   \item Including performance metrics and monitoring hooks.
+%   \end{itemize}
+% \item Built daemon management and monitoring software.
+% \end{itemize}}
+% {% endfor %}
+{% endfor %}
+
+
+% \section{Education}
+% \cventry{2007--2009}{Master of Science in Computer Science}{Worcester Polytechnic Institute}{Worcester, MA}{}{Studies in AI, compilers, logic, performance analysis, etc; coursework undertaken concurrently with Bachelor of Science work.}
+% \cventry{2005--2009}{Bachelor of Science in Computer Science}{Worcester Polytechnic Institute}{Worcester, MA}{\textit{Distinction, Charles O. Thompson Scholar}}{Undergraduate studies covering core computer science subjects, mathematics, humanities, etc.}
+% \cventry{2005}{Associate of Science in Engineering Science}{Northern Essex Community College}{Haverhill, MA}{\textit{Magna Cum Laude}}{Community college coursework focused on basic engineering, math, and science.}
+% 
+% 
+% \section{Software Projects}
+% \cvitem{Lidless}{Distributed OpenCV based system for analyzing camera feeds, recording activity, and distributing metadata on busyness and lighting status of the fields of view of the cameras via web, chat, and API interfaces.}
+% \cvitem{Psyched}{Calendar and tasks management application in Python and GTK.}
+% 
+% \section{Computer skills}
+% \cvdoubleitem{\textbf{Databases}}{MySQL, SQLite}{\textbf{Webservers}}{Apache, nginx}
+% \cvdoubleitem{\textbf{async}}{Tornado, Twisted, boost::asio}{\textbf{NoSQL}}{memcached, couchdb, kumofs}
+% \cvdoubleitem{\textbf{Queues}}{AMQP (qpid), ZeroMQ}{\textbf{embedded}}{Arduino, Raspberry Pi, SPI, data acquisition}
+% \cvdoubleitem{\textbf{OSes}}{GNU/Linux, Microsoft Windows}{\textbf{Sim/Test}}{SimPy, Python nosetests, Java JUnit}
+% \cvdoubleitem{\textbf{Frameworks}}{Django, jQuery}{\textbf{}}{}
+% 
+% \section{Languages}
+% \cvitemwithcomment{Python}{Advanced}{My go-to language. The python interactive shell is my office.}
+% \cvitemwithcomment{C++}{Intermediate}{One of the first languages I learned, but I have not used it as much as Python.}
+% \cvitemwithcomment{Java}{Intermediate}{I've known Java for 10 years, but I don't use it very often.}
+% \cvitemwithcomment{PHP}{Advanced}{I've had significant experience with PHP5, PHP4, and PHP3.}
+% \cvitemwithcomment{shell script}{Intermediate}{I can't explain the bash forkbomb, but I can script some good stuff.}
+% \cvitemwithcomment{C}{Advanced}{Sometimes when I'm coding C++, I find myself doing some of it in C. Old habits die hard.}
+% \cvitemwithcomment{JavaScript}{Intermediate}{Used jQuery, YUI, flot, and a bunch of other js. I can work my way through most any js.}
+
+\section{References}
+
+Available upon request.
+
+\clearpage
+
+\end{document}

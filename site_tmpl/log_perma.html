@@ -1,0 +1,75 @@
+{% extends user.is_authenticated|yesno:'base_2014.html,base.html' %}
+{% load inline_thumbnails %} 
+{% load markdown_deux_tags %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <h2 class="cvtitle">{{ e.title }} </h2>
+    <div class="row cvitem">
+        
+        
+        
+        <div class="col-md-10 cvdata">
+            {{ e.body|inline_thumbnails|markdown|safe }}
+        </div>
+        <div class="col-md-2 text-muted"><em>posted {{e.posted}}</em></div>
+    </div>
+    <div class="row">
+        <div>
+        {% with preventry=e.get_prev_in_proj %}
+            {% if preventry %}
+                <div class="col-md-3">
+                    <a href="{% url "projects.views.log_perma" preventry.project.slug preventry.slug %}">
+                        <span class="glyphicon glyphicon-chevron-left"></span> {{ preventry }}
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-md-3"> </div>
+            {% endif %}
+        {% endwith %}
+        <div class="col-md-6"></div>
+        {% with nextentry=e.get_next_in_proj %}
+            {% if nextentry %}
+                <div class="col-md-3">
+                    <a href="{% url "projects.views.log_perma" nextentry.project.slug nextentry.slug %}">
+                        {{ nextentry }}
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                    
+                </div>
+            {% else %}
+                <div class="col-md-3"> </div>
+            {% endif %}
+        {% endwith %}
+        
+        </div>
+    </div>
+    {% else %}
+    <div class="cvitem">
+        <div class="floatr muted"><em>posted {{e.posted}}</em></div>
+        <div class="cvtitle">{{ e.title }} </div>
+        
+        <div class="cvdata">
+            {{ e.body|inline_thumbnails|markdown|safe }}
+        </div>
+        <div>
+        {% with preventry=e.get_prev_in_proj %}
+        {% if preventry %}
+        <div class="floatl"><a href="{% url "projects.views.log_perma" preventry.project.slug preventry.slug %}">&lt; Previous:  {{ preventry }}</a></div>
+        {% endif %}
+        {% endwith %}
+        
+        {% with nextentry=e.get_next_in_proj %}
+        {% if nextentry %}
+        <div class="floatr"><a href="{% url "projects.views.log_perma" nextentry.project.slug nextentry.slug %}"> {{ nextentry}} :Next &gt;</a></div>
+        {% endif %}
+        {% endwith %}
+        
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
