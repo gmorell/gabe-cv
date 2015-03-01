@@ -7,14 +7,8 @@ def index(request):
     sections = Section.objects.all()
     context['sects'] = sections
     
-    return render_to_response('cv.html', context)
-
-def index_2014(request):
-    context = RequestContext(request)
-    sections = Section.objects.all()
-    context['sects'] = sections
-    
     return render_to_response('cv_2014_2.html', context)
+
 
 import cStringIO as StringIO
 import ho.pisa as pisa
