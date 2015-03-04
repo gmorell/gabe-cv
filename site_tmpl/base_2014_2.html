@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/foundation.min.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/normalize.min.css">
+        <link href="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!--<link rel="stylesheet" href="{{ STATIC_URL }}2014-2.css">-->
@@ -34,8 +35,8 @@
             color: #ddd;
             padding:30px;
             font-size: 128px;
-            animation: animate_bg 180s linear infinite; 
-            -webkit-animation: animate_bg 180s linear infinite; 
+            animation: animate_bg 60s linear infinite; 
+            -webkit-animation: animate_bg 60s linear infinite; 
         }
         .miniheader a {
             color: #ddd;
@@ -105,11 +106,13 @@
         <div class="sticky">
             <nav class="top-bar" data-topbar data-options="sticky_on: large">
                 <section class="top-bar-section">
-                <div class="icon-bar five-up">
-                    <a href="{% url "msite.views.index" %}" class="item active">
-                        <i class="fa fa-home fa-inverse"></i>
-                        <label>Home</label>
+                <div class="icon-bar {{ foundation_up }}-up">
+                    {% for lnav in navs_left %}
+                    <a href="{% url "pages.views.page" lnav.page_slug %}" class="item">
+                        <i class="fa {{ lnav.nav_icon }} fa-inverse"></i>
+                        <label>{{lnav.nav_heading }}</label>
                     </a>
+                    {% endfor %}
                     <a href="{% url "cv.views.index" %}" class="item">
                         <i class="fa fa-paperclip fa-inverse"></i>
                         <label>CV</label>
@@ -122,15 +125,19 @@
                         <i class="fa fa-code-fork fa-inverse"></i>
                         <label>Projects</label>
                     </a>
-                    <a href="{% url "msite.views.contact" %}" class="item">
-                        <i class="fa fa-envelope-o fa-inverse"></i>
-                        <label>Contact</label>
+                    {% for rnav in navs_right %}
+                    <a href="{% url "pages.views.page" rnav.page_slug %}" class="item">
+                        <i class="fa {{ rnav.nav_icon }} fa-inverse"></i>
+                        <label>{{rnav.nav_heading }}</label>
                     </a>
+                    {% endfor %}
                 </div>
                 </section>
             </nav>
         </div>
-        <br /><br /><br /><br /><br />
+        <div id="content clearfix"></div>
+        <br /><br /><br /><br /><br /> <!-- fix me later -->
+        
         {% block content %}
         <div>
             <div class="medium-6 large-4 columns boxxy">
@@ -197,6 +204,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/vendor/placeholder.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation/foundation.magellan.min.js"></script>
+        <script src="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
         <script>
             $(document).foundation();
         </script>

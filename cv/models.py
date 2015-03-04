@@ -1,5 +1,5 @@
 from django.db import models
-from projects.models import Project
+#from projects.models import Project
 
 # Create your models here.
 
@@ -19,7 +19,7 @@ class Entry(models.Model):
     date_start = models.DateField(null=True,blank=True)
     date_end = models.DateField(null=True,blank=True)
     section = models.ForeignKey('Section')
-    related_project = models.ForeignKey(Project,null=True,blank=True)
+    related_project = models.ForeignKey('projects.Project',null=True,blank=True)
 
     def __unicode__(self):
         return self.title

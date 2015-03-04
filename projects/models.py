@@ -1,6 +1,11 @@
 from django.db import models
 from uuidfield import UUIDField
 
+#from imagekit.models.fields import ImageSpecField
+from imagekit.models import ImageSpecField
+
+from pilkit.processors.resize import ResizeToFill, SmartResize, Resize
+
 import datetime,pytz
 
 # Create your models here.
@@ -104,6 +109,18 @@ class InlineEntryImg(models.Model):
     title           = models.CharField(max_length=128)
     
     image           = models.ImageField(upload_to='projects')
+    image_r = ImageSpecField(
+                        source='image', # for resized
+                        processors=[ResizeToFill(1080, 609)],
+                        format='JPEG',
+                        options={'quality': 80})
+    
+    image_t = ImageSpecField(
+                        source='image_r', # for resized
+                        processors=[ResizeToFill(108, 61)],
+                        format='JPEG',
+                        options={'quality': 60})
+
     identifier      = UUIDField(auto=True,max_length=8)
     
     def __unicode__(self):

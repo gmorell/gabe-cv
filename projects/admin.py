@@ -1,5 +1,5 @@
 from django.contrib import admin
-from projects.models import *
+from projects.models import Project, ExternalProjectLink, Entry, InlineEntryImg
 
 class ProjectLinkInline(admin.StackedInline):
     model = ExternalProjectLink

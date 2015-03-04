@@ -32,7 +32,7 @@ def inline_thumbnails(value):
             #new_value = new_value.replace(m.group(), '<img src="%s%s" width="%d" height="%d" alt="%s" /><p><em>%s</em></p>' % ('http://mysite.com', thumbnail.absolute_url, thumbnail.width(), thumbnail.height(), image.title, image.title))
             #
         
-            new_value = new_value.replace(m.group(), '<div class="%s columns"><img src="%s" alt="%s" max-width="100%%"/><p><em class="caption">%s</em></p></div>' % (width_class, image.image.url, image.title, image.title))
+            new_value = new_value.replace(m.group(), '<div class="%s columns"><a data-featherlight="%s"><img src="%s" alt="%s" max-width="100%%"/></a><p><em class="caption">%s</em></p></div>' % (width_class, image.image.url, image.image_r.url, image.title, image.title))
         except IIE.DoesNotExist:
             pass
     return new_value

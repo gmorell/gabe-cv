@@ -1,0 +1,19 @@
+{% extends 'base_2014_2.html' %}
+{% load markdown_deux_tags %}
+
+{% block title %}
+    {{ content.nav_heading }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop bh_hexenes">
+            <strong> {{content.page_heading }}</strong>
+        </div>
+        <div class="boxxybottom">
+            {{ content.page_body|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
