@@ -1,9 +1,8 @@
-{% load markup %}
+{% load markdown_deux_tags %}
 
 {% block title %}
-<h1>Gabriel Morell-Pacheco</h1>
-<p>gmorell@wpi.edu / www.gmp.pw <br />
-(617) 657-4223</p>
+<h1>{{ PDF_HEADER }}</h1>
+<p>{{ PDF_CONTACT|linebreaksbr }}</p>
 {% endblock %}
 {% block nav %}
 {% endblock %}
@@ -47,7 +46,7 @@
         <tr>
             <td colspan="3"><h2>{{ s }}</h2></td>
         </tr>
-            {% for e in s.entry_set.all %}
+            {% for e in s.pdfable_entries %}
                 <tr class="largerow">
                     <td colspan="5">
                         <strong>{{ e }}</strong>

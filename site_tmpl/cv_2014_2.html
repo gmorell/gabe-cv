@@ -7,7 +7,7 @@
 <div class="row">
     {% for s in sects %}
     <div class="large-12 columns boxxy">
-        <div class="boxxytop bh_dots">
+        <div class="boxxytop bh_dots" id="{{ s.anchortitle|slugify }}">
             <strong>{{ s.anchortitle }}</strong>
         </div>
         <div class="boxxybottom">

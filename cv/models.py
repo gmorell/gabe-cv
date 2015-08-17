@@ -12,6 +12,10 @@ class Section(models.Model):
     @property
     def anchortitle(self):
         return self.title.split()[0]
+    
+    @property
+    def pdfable_entries(self):
+        return self.entry_set.filter(show_in_pdf=True)
 
 class Entry(models.Model):
     title = models.CharField(max_length=128)
@@ -20,6 +24,8 @@ class Entry(models.Model):
     date_end = models.DateField(null=True,blank=True)
     section = models.ForeignKey('Section')
     related_project = models.ForeignKey('projects.Project',null=True,blank=True)
+    
+    show_in_pdf = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.title

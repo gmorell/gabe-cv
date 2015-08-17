@@ -3,7 +3,7 @@ from cv.models import *
 #from pagedown.widgets import AdminPagedownWidget
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('title','section','related_project')
+    list_display = ('title','section','related_project','show_in_pdf')
     #formfield_overrides = {
         #models.TextField: {'widget': AdminPagedownWidget },
     #}

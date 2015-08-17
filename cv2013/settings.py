@@ -209,6 +209,9 @@ AUTHENTICATION_BACKENDS = (
 
 DEBUG=True
 
+PDF_HEADER = "SET PDF_HEADER"
+PDF_CONTACT = "SET PDF_CONTACT"
+
 try:
     local_settings_file = open(here('local_settings.py'), 'r')
     local_settings_script = local_settings_file.read()

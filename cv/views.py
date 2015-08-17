@@ -86,6 +86,8 @@ def index_as_pdf(request):
     context = RequestContext(request)
     sections = Section.objects.all()
     context['sects'] = sections
+    context['PDF_HEADER'] = settings.PDF_HEADER
+    context['PDF_CONTACT'] = settings.PDF_CONTACT
     #context['pagesize'] = 'A4'
     
     #return render_to_pdf('cv_pdf.html',context)
