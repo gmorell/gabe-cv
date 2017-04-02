@@ -1,5 +1,6 @@
+import uuid
+
 from django.db import models
-from uuidfield import UUIDField
 
 #from imagekit.models.fields import ImageSpecField
 from imagekit.models import ImageSpecField
@@ -121,7 +122,7 @@ class InlineEntryImg(models.Model):
                         format='JPEG',
                         options={'quality': 60})
 
-    identifier      = UUIDField(auto=True,max_length=8)
+    identifier      = models.UUIDField(default=uuid.uuid4)
     
     def __unicode__(self):
         return self.title

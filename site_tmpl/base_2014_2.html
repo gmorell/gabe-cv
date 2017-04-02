@@ -108,25 +108,25 @@
                 <section class="top-bar-section">
                 <div class="icon-bar {{ foundation_up }}-up">
                     {% for lnav in navs_left %}
-                    <a href="{% url "pages.views.page" lnav.page_slug %}" class="item">
+                    <a href="{% url "page-view" lnav.page_slug %}" class="item">
                         <i class="fa {{ lnav.nav_icon }} fa-inverse"></i>
                         <label>{{lnav.nav_heading }}</label>
                     </a>
                     {% endfor %}
-                    <a href="{% url "cv.views.index" %}" class="item">
+                    <a href="{% url "cv_index" %}" class="item">
                         <i class="fa fa-paperclip fa-inverse"></i>
                         <label>CV</label>
                     </a>
-                    <a href="{% url "projects.views.log" %}" class="item">
+                    <a href="{% url "log_list" %}" class="item">
                         <i class="fa fa-list fa-inverse"></i>
                         <label>Log</label>
                     </a>
-                    <a href="{% url "projects.views.project_list" %}" class="item">
+                    <a href="{% url "projects" %}" class="item">
                         <i class="fa fa-code-fork fa-inverse"></i>
                         <label>Projects</label>
                     </a>
                     {% for rnav in navs_right %}
-                    <a href="{% url "pages.views.page" rnav.page_slug %}" class="item">
+                    <a href="{% url "page-view" rnav.page_slug %}" class="item">
                         <i class="fa {{ rnav.nav_icon }} fa-inverse"></i>
                         <label>{{rnav.nav_heading }}</label>
                     </a>

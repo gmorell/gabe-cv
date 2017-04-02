@@ -19,7 +19,7 @@ Index - {{ project }}
             <strong>{{ e.title }}</strong>
             <div class="right">
                 <small class="whitemuted"><em>posted {{e.posted}}</em><br />
-                <a href="{% url "projects.views.log_perma" e.project.slug e.slug %}">perma</a>
+                <a href="{% url "log_perma" e.project.slug e.slug %}">perma</a>
                 </small>
             </div>
         </div>

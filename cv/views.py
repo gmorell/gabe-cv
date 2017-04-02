@@ -1,17 +1,17 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import Context,RequestContext
 from cv.models import Section
 
 def index(request):
-    context = RequestContext(request)
+    context = {}
     sections = Section.objects.all()
     context['sects'] = sections
     
-    return render_to_response('cv_2014_2.html', context)
+    return render(request, 'cv_2014_2.html', context)
 
 
 import cStringIO as StringIO
-import ho.pisa as pisa
+import xhtml2pdf.pisa as pisa
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
@@ -26,7 +26,7 @@ def render_to_pdf(template_src, context_dict):
 
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
     if not pdf.err:
-        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
 
 #def index_as_pdf(request):
@@ -105,4 +105,4 @@ def index_as_pdf(request):
     file.seek(0)
     pdf = file.read()
     file.close()            # Don't forget to close the file handle
-    return HttpResponse(pdf, mimetype='application/pdf')
+    return HttpResponse(pdf, content_type='application/pdf')
