@@ -76,7 +76,7 @@ ROOT_URLCONF = 'cv2013.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['site_tmpl'],
+        'DIRS': [os.path.join(BASE_DIR, 'site_tmpl')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
