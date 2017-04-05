@@ -39,18 +39,17 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-    # Uncomment the next line to enable admin documentation:
+    # First
     'cv',
     'projects',
     'msite',
     'docs',
     'pages',
 
+    # Third
     'lineage',
 
     'markdown_deux',
-    # 'pagedown',
-    # 'sorl.thumbnail',
 
     'allauth',
     'allauth.account',
@@ -58,6 +57,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.persona',
 
     'imagekit',
+
+    'raven.contrib.django.raven_compat',
 )
 
 MIDDLEWARE_CLASSES = (
