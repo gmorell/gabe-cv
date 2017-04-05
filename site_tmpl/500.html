@@ -1,14 +1,33 @@
 {% extends 'base_2014_2.html' %}
 
 {% block title %}
-Index
+500!
 {% endblock %}
 
 {% block content %}
-    <div class="cvitem">
-        <div class="cvtitle">500!</div>
-        <div class="cvdata">
-            Ow.
+<!-- Sentry JS SDK 2.1.+ required -->
+<script src="https://cdn.ravenjs.com/2.3.0/raven.min.js"></script>
+
+{% if request.sentry.id %}
+  <script>
+  Raven.showReportDialog({
+    eventId: '{{ request.sentry.id }}',
+
+    // use the public DSN (dont include your secret!)
+    dsn: '___PUBLIC_DSN___'
+  });
+  </script>
+{% endif %}
+
+<div class="row">
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop bh_dots">
+            <strong>500!</strong>
+        </div>
+        <div class="boxxybottom">
+            Ow!
+            <br />
         </div>
     </div>
+</div>
 {% endblock %}
