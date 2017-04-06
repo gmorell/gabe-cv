@@ -51,6 +51,7 @@ INSTALLED_APPS = (
 
     'markdown_deux',
 
+    'adminsortable',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

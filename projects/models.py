@@ -1,26 +1,31 @@
+import datetime
+import pytz
 import uuid
 
+from adminsortable.models import SortableMixin
 from django.db import models
-
-#from imagekit.models.fields import ImageSpecField
+# from imagekit.models.fields import ImageSpecField
 from imagekit.models import ImageSpecField
-
-from pilkit.processors.resize import ResizeToFill, SmartResize, Resize
-
-import datetime,pytz
+from pilkit.processors.resize import ResizeToFill
 
 # Create your models here.
 
-class Project(models.Model):
+class Project(SortableMixin, models.Model):
     
     name = models.CharField(max_length=32)
     slug = models.SlugField()
     blurb = models.TextField(null=True,blank=True)
     last_updated = models.DateTimeField(auto_now=True)
     display_class = models.CharField(max_length=32, default="bh_dots")
+
+    display_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ['display_order']
+        verbose_name_plural = 'Projects'
 
     @property
     def entries(self):
