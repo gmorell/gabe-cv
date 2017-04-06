@@ -1,6 +1,7 @@
 appdirs==1.4.3
 contextlib2==0.5.4
 Django==1.10.6
+django-admin-sortable==2.1
 django-allauth==0.31.0
 django-appconf==1.0.2
 django-compressor==1.3
