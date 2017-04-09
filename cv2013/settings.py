@@ -89,6 +89,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'pages.processors.nav_stuff',
+                'cv.processors.ga_tracking_id',
             ],
         },
     },
@@ -164,6 +165,7 @@ ADMINS = (
 PDF_HEADER = "SET PDF_HEADER"
 PDF_CONTACT = "SET PDF_CONTACT"
 SITE_ID=1
+GA_TRACKING_ID = None
 
 try:
     local_settings_file = open(here('local_settings.py'), 'r')
@@ -171,3 +173,5 @@ try:
     exec local_settings_script
 except IOError, e:
     print "Unable to open local settings! %s" % e
+
+
