@@ -1,6 +1,6 @@
 {% extends 'base_2014_2.html' %}
 {% load inline_thumbnails %} 
-{% load markdown_deux_tags %}
+{% load markdown_highlight %}
 {% block content %}
 
 
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="boxxybottom">
-            {{ p.blurb|inline_thumbnails|markdown|safe }}
+            {{ p.blurb|inline_thumbnails|hl8markdown|safe }}
         </div>
     </div>
 {% endfor %}

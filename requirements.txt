@@ -13,11 +13,13 @@ django-markdown-deux==1.0.4
 html5lib==1.0b10
 httplib2==0.10.3
 markdown2==2.2.0
+mistune==0.7.4
 oauthlib==2.0.2
 olefile==0.44
 packaging==16.8
 pilkit==2.0
 Pillow==4.0.0
+Pygments==2.2.0
 pyparsing==2.2.0
 pyPdf==1.13
 PyPDF2==1.26.0

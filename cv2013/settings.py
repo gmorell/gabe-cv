@@ -143,6 +143,7 @@ MARKDOWN_DEUX_STYLES = {
             "code-friendly": None,
         },
         "safe_mode": None,
+
     },
 }
 

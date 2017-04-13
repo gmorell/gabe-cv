@@ -1,4 +1,5 @@
 {% load lineage %}
+{% load static %}
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/foundation.css">
@@ -7,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/css/normalize.min.css">
         <link href="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{% static 'css/solarized_light.css' %}" rel="stylesheet">
 
         <!--<link rel="stylesheet" href="{{ STATIC_URL }}2014-2.css">-->
         <style>
@@ -46,6 +48,7 @@
 /*             margin: 0px; */
 /*             padding:0px */
             margin-bottom:20px;
+            border-radius: 8px;
             
         }
         .boxxytop {

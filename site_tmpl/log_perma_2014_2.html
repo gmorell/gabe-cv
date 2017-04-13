@@ -1,6 +1,6 @@
 {% extends 'base_2014_2.html' %}
 {% load inline_thumbnails %} 
-{% load markdown_deux_tags %}
+{% load markdown_highlight %}
 
 {% block title %}
 Index
@@ -20,7 +20,7 @@ Index
         <div class="boxxybottom">
             <div class="clearing-thumbs" data-clearing>
 
-            {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|markdown|safe }}
+            {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|hl8markdown|safe }}
             </div>
         </div>
     </div>
