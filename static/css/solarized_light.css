@@ -17,16 +17,17 @@ green     #859900  operators, other keywords
 */
 table.highlighttable {
     border: none;
+    width: 100%;
 }
 td.linenos {
     margin-left: 0px;
     margin-right: 0px;
 }
 .highlight {
-    font-size: 80%;
+    font-size: 100%;
     border-radius: 6px;
     padding: 5px;
-    box-shadow: inset 0px 2px 6px #CCC;
+    box-shadow: inset 0px 2px 6px #DDD;
 }
 .highlight pre {
     overflow: hidden;
