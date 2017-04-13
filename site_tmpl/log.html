@@ -17,9 +17,9 @@ Index
             </div>
             <div class="col-md-2 text-muted">
                 <em>posted {{e.posted}}</em><br />
-                <a href="{% url "projects.views.log_perma" project=e.project.slug slug=e.slug %}">perma</a>
+                <a href="{% url "log_perma" project=e.project.slug slug=e.slug %}">perma</a>
                 &middot;
-                <a href="{% url "projects.views.log_project" slug=e.project.slug %}">all entries</a>
+                <a href="{% url "log_project" slug=e.project.slug %}">all entries</a>
             </div>
             
         </div>
