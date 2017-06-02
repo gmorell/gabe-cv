@@ -9,7 +9,7 @@ Index
 {% block content %}
 <div class="row">
     <div class="large-12 columns boxxy">
-        <div class="boxxytop {{e.project.display_class}}">
+        <div class="boxxytop {{e.project.display_class}} ns_mixin_test_head">
             {{ e.title }} 
             <div class="right">
                 <small class="whitemuted"><em>posted {{e.posted}}</em><br />
@@ -17,9 +17,8 @@ Index
                 </small>
             </div>
         </div>
-        <div class="boxxybottom">
+        <div class="boxxybottom ns_mixin_test_body">
             <div class="clearing-thumbs" data-clearing>
-
             {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|hl8markdown|safe }}
             </div>
         </div>

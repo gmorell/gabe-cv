@@ -11,7 +11,7 @@ Index
     
     {% for e in entries %}
     <div class="large-12 columns boxxy">
-        <div class="boxxytop {{e.project.display_class}}">
+        <div class="boxxytop {{e.project.display_class}} ns_mixin_test_head">
             <strong>{{ e.title }} </strong>
             <div class="right">
                 <small class="whitemuted"><em>posted {{e.posted}}</em><br />
@@ -22,7 +22,7 @@ Index
             </div>
         </div>
         
-        <div class="boxxybottom">
+        <div class="boxxybottom ns_mixin_test_body">
 
                 {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|hl8markdown|safe }}
 

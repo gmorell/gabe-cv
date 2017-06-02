@@ -60,9 +60,11 @@ INSTALLED_APPS = (
     'imagekit',
 
     'raven.contrib.django.raven_compat',
+
+    'rest_framework'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,6 +73,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'cv2013.middleware.NightShiftMiddleware',
 )
 
 ROOT_URLCONF = 'cv2013.urls'
@@ -90,6 +93,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'pages.processors.nav_stuff',
                 'cv.processors.ga_tracking_id',
+                'cv.processors.nightshift_tmpl'
             ],
         },
     },

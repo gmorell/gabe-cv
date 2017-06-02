@@ -7,10 +7,10 @@
 <div class="row">
     {% for s in sects %}
     <div class="large-12 columns boxxy">
-        <div class="boxxytop bh_dots" id="{{ s.anchortitle|slugify }}">
+        <div class="boxxytop bh_dots ns_mixin_test_head" id="{{ s.anchortitle|slugify }}">
             <strong>{{ s.anchortitle }}</strong>
         </div>
-        <div class="boxxybottom">
+        <div class="boxxybottom ns_mixin_test_body">
             {% for e in s.entry_set.all %}
                 <div class="row">       
                     <div class="large-10 columns">

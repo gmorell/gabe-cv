@@ -2,11 +2,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.http.response import HttpResponse
 
+from api import views as views_api
+from cv import views as views_c
 from docs.views import DocumentDetail
 from msite import views as views_m
-from cv import views as views_c
-from projects import views as views_p
 from pages import views as views_pa
+from projects import views as views_p
 
 urlpatterns = [
     # Examples:
@@ -32,6 +33,8 @@ urlpatterns = [
     url(r'^_', lambda r: HttpResponse("Anything is Possible if You Believe")),
     url(r'^p/(?P<slug>[-\w]+)/$', views_pa.page, name="page-view"),
     url(r'^a/', include('allauth.urls')),
+    url(r'^api/ns$', views_api.set_nightshift_cookie, name="api-cookie-nightshift"),
+    url(r'^api/nst', views_api.set_nightshift_toggle, name="api-cookie-nightshift-toggle"),
 ]
 
 

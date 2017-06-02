@@ -7,7 +7,7 @@
 
 {% for p in projects %}
     <div class="large-4 columns boxxy">
-        <div class="boxxytop {{p.display_class}}">
+        <div class="boxxytop {{p.display_class}} ns_mixin_test_head">
             <strong>{{ p.name }}</strong>
             <div class="right">
                 {% for l in p.links.all %}
@@ -19,7 +19,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="boxxybottom">
+        <div class="boxxybottom ns_mixin_test_body">
             {{ p.blurb|inline_thumbnails|hl8markdown|safe }}
         </div>
     </div>

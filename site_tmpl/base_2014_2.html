@@ -38,7 +38,8 @@
             padding:30px;
             font-size: 128px;
             animation: animate_bg 60s linear infinite; 
-            -webkit-animation: animate_bg 60s linear infinite; 
+            -webkit-animation: animate_bg 60s linear infinite;
+
         }
         .miniheader a {
             color: #ddd;
@@ -100,11 +101,66 @@
         .bh_waggles {
             background: #223150 url("{{ STATIC_URL }}images/headers/waggles.png");
         }
+        #night {
+            opacity: .4;
+        }
+
+        {% if nightshift_enabled == 'True' %}
+        body {
+            background-color: #330033;
+        }
+        .ns_mixin_test_head {
+            background-color: #110011;
+            background-blend-mode: luminosity;
+        }
+        .ns_mixin_test_body {
+            background-color: #3c1c3c;
+            color: #ddd;
+        }
+        .miniheader {
+            background-color: #110011;
+            background-blend-mode: luminosity;
+        }
+        .icon-bar a:hover {
+            background-color: #220022;
+        }
+        .icon-bar {
+            background-color: #110011;
+            background-blend-mode: luminosity;
+        }
+        .highlight{
+            box-shadow: inset 0px 2px 6px #333;
+        }
+        .highlighttable {
+            color: #ddd;
+            background-color: #3c1c3c;
+        }
+        pre {
+            color: #ddd;
+        }
+        .project-head {
+            color: #DDD;
+        }
+        .project-head h2 {
+            color: #EEE;
+        }
+        {% endif %}
         </style>
+        {% if nightshift_enabled == 'True' %}
+            <!-- Some better shifting may be in play for solarized light 2 dark -->
+        <link href="{% static 'css/solarized_dark.css' %}" rel="stylesheet">
+        {% endif %}
     </head>
     <body>
         <div class="miniheader">
-        <a href="/">Gabriel Morell</a>
+            <a href="/">Gabriel Morell</a>
+            <a href="#" style="font-size: .2em;" id="night">
+                {% if nightshift_enabled == 'True' %}
+                <i class="fa fa-moon-o" aria-hidden="true"></i>
+                {% else %}
+                <i class="fa fa-sun-o" aria-hidden="true"></i>
+                {% endif %}
+            </a>
         </div>
         <div class="sticky">
             <nav class="top-bar" data-topbar data-options="sticky_on: large">
@@ -230,6 +286,20 @@
 
         </script>
         {% endif %}
+        <script>
+            $(document).ready(function(){
+                // horrible hack lmao
+                $("#night").click(function(){
+                    $.get("/api/nst", {}, function () {
+                        $.get("/", {}, function () {
+                            location.reload();
+                        });
+                    });
+
+
+                })
+            })
+        </script>
     </body>
 </html>
 
