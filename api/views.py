@@ -3,7 +3,12 @@ from __future__ import unicode_literals
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
+from api.serializers import PageSerializer, CVSerializer, ProjectSerializer
+from cv.models import Section
+from pages.models import Page
+from projects.models import Project
 from .serializers import NightShiftSerializer
 
 @api_view(['POST'])
@@ -35,3 +40,21 @@ def set_nightshift_toggle(request):
         response.data = {"nightshift": True}
 
     return response
+
+
+# Pages
+class PageROViewSet(ReadOnlyModelViewSet):
+    queryset = Page.objects.all()
+    serializer_class = PageSerializer
+
+
+# CV
+class CVROViewSet(ReadOnlyModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = CVSerializer
+
+
+# projects
+class ProjectViewSet(ReadOnlyModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
