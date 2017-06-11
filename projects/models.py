@@ -1,12 +1,13 @@
 import datetime
-import pytz
 import uuid
 
+import pytz
 from adminsortable.models import SortableMixin
 from django.db import models
 # from imagekit.models.fields import ImageSpecField
 from imagekit.models import ImageSpecField
 from pilkit.processors.resize import ResizeToFill
+
 
 # Create your models here.
 
@@ -60,7 +61,7 @@ class Entry(models.Model):
     slug = models.SlugField()
     body = models.TextField()
     
-    posted = models.DateTimeField()
+    posted = models.DateTimeField('"Publish" Date')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     

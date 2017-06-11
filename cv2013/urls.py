@@ -5,6 +5,7 @@ from rest_framework.routers import DefaultRouter
 
 from api import views as views_api
 from cv import views as views_c
+from cv2013.views import LatestLogFeed, LatestLogFeedJSON
 from docs.views import DocumentDetail
 from msite import views as views_m
 from pages import views as views_pa
@@ -28,6 +29,9 @@ urlpatterns = [
     url(r'^cv/pdf/$',   views_c.index_as_pdf,   name="cv_pdf"),
 
     url(r'^contact/$', views_m.contact),
+
+    url(r'^rss.xml$', LatestLogFeed()),
+    url(r'^rss.json', LatestLogFeedJSON()),
 
     url(r'^projects/$', views_p.project_list, name="projects"),
     url(r'^log/$', views_p.log, name="log_list"),
