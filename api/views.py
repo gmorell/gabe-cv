@@ -41,6 +41,20 @@ def set_nightshift_toggle(request):
 
     return response
 
+@api_view(['GET'])
+def set_anchorware_toggle(request):
+    response = Response()
+    if request.COOKIES.get('anchorware') == "True":
+        response.set_cookie('anchorware', False)
+        request.session['anchorware'] = False
+        response.data = {"anchorware": False}
+    else:
+        response.set_cookie('anchorware', True)
+        request.session['anchorware'] = True
+        response.data = {"anchorware": True}
+
+    return response
+
 
 # Pages
 class PageROViewSet(ReadOnlyModelViewSet):

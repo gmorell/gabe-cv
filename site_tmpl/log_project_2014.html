@@ -15,14 +15,14 @@ Index - {{ project }}
     {% if project.parent %}
         <div class="large-12 columns project-head">
             <h5> Parent </h5>
-            <a href="{% url "log_project" slug=project.parent.slug %}" class="button round small">{{ project.parent }}</a>
+            <a href="{% url "log_project" slug=project.parent.slug %}{{ ancw }}" class="button round small">{{ project.parent }}</a>
         </div>
     {% endif %}
     {% if children %}
     <div class="large-12 columns project-head">
         <h5><i class="fa fa-caret-right"></i> Subprojects </h5>
         {% for c in children %}
-            <a href="{% url "log_project" slug=c.slug %}" class="button round small">{{ c }}</a>
+            <a href="{% url "log_project" slug=c.slug %}{{ ancw }}" class="button round small">{{ c }}</a>
         {% endfor %}
     </div>
     {% endif %}
@@ -37,9 +37,9 @@ Index - {{ project }}
 
                 <br />
 
-                    <a href="{% url "log_project" slug=e.project.slug %}">under {{ e.project.slug }}</a>
+                    <a href="{% url "log_project" slug=e.project.slug %}{{ ancw }}">under {{ e.project.slug }}</a>
                 &middot;
-                <a href="{% url "log_perma" e.project.slug e.slug %}">perma</a>
+                <a href="{% url "log_perma" e.project.slug e.slug %}{{ ancw }}">perma</a>
 
                 </small>
             </div>

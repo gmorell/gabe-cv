@@ -13,7 +13,7 @@ Index
             {{ e.title }} 
             <div class="right">
                 <small class="whitemuted"><em>posted {{e.posted}}</em><br />
-                <a href="{% url "log_project" slug=e.project.slug %}">all entries</a>
+                <a href="{% url "log_project" slug=e.project.slug %}{{ ancw }}">all entries</a>
                 </small>
             </div>
         </div>
@@ -28,7 +28,7 @@ Index
     <div class="small-6 large-3 columns">
         {% with preventry=e.get_prev_in_proj %}
             {% if preventry %}
-                <a class="button radius" href="{% url "log_perma" preventry.project.slug preventry.slug %}">
+                <a class="button radius" href="{% url "log_perma" preventry.project.slug preventry.slug %}{{ ancw }}">
                     <span class="glyphicon glyphicon-chevron-left"></span> {{ preventry }}
                 </a>
             {% else %}
@@ -39,7 +39,7 @@ Index
     <div class="small-6 large-3 large-offset-6 columns">
     {% with nextentry=e.get_next_in_proj %}
             {% if nextentry %}
-                <a class="button radius" href="{% url "log_perma" nextentry.project.slug nextentry.slug %}">
+                <a class="button radius" href="{% url "log_perma" nextentry.project.slug nextentry.slug %}{{ ancw }}">
                     {{ nextentry }}
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>

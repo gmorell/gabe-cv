@@ -104,8 +104,11 @@
         .bh_waggles {
             background: #223150 url("{{ STATIC_URL }}images/headers/waggles.png");
         }
-        #night {
+        #night,#eric {
             opacity: .4;
+        }
+        #night:hover,#eric:hover {
+            opacity: .8;
         }
         .button {
             background: #223150;
@@ -160,6 +163,11 @@
             background: #3c1c3c;
         }
         {% endif %}
+        {% if ancw %}
+        .empty {
+            height: 100%;
+        }
+        {% endif %}
         </style>
         {% if nightshift_enabled == 'True' %}
             <!-- Some better shifting may be in play for solarized light 2 dark -->
@@ -176,31 +184,38 @@
                 <i class="fa fa-sun-o" aria-hidden="true"></i>
                 {% endif %}
             </a>
+            <a href="" style="font-size: .2em;" id="eric">
+                {% if ancw  %}
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                {% else %}
+                <i class="fa fa-unlock" aria-hidden="true"></i>
+                {% endif %}
+            </a>
         </div>
         <div class="sticky" id="cb">
             <nav class="top-bar" data-topbar data-options="sticky_on: large">
                 <section class="top-bar-section">
                 <div class="icon-bar {{ foundation_up }}-up">
                     {% for lnav in navs_left %}
-                    <a href="{% url "page-view" lnav.page_slug %}" class="item">
+                    <a href="{% url "page-view" lnav.page_slug %}{{ ancw }}" class="item">
                         <i class="fa {{ lnav.nav_icon }} fa-inverse"></i>
                         <label>{{lnav.nav_heading }}</label>
                     </a>
                     {% endfor %}
-                    <a href="{% url "cv_index" %}" class="item">
+                    <a href="{% url "cv_index" %}{{ ancw }}" class="item">
                         <i class="fa fa-paperclip fa-inverse"></i>
                         <label>CV</label>
                     </a>
-                    <a href="{% url "log_list" %}" class="item">
+                    <a href="{% url "log_list" %}{{ ancw }}" class="item">
                         <i class="fa fa-list fa-inverse"></i>
                         <label>Log</label>
                     </a>
-                    <a href="{% url "projects" %}" class="item">
+                    <a href="{% url "projects" %}{{ ancw }}" class="item">
                         <i class="fa fa-code-fork fa-inverse"></i>
                         <label>Projects</label>
                     </a>
                     {% for rnav in navs_right %}
-                    <a href="{% url "page-view" rnav.page_slug %}" class="item">
+                    <a href="{% url "page-view" rnav.page_slug %}{{ ancw }}" class="item">
                         <i class="fa {{ rnav.nav_icon }} fa-inverse"></i>
                         <label>{{rnav.nav_heading }}</label>
                     </a>
@@ -306,8 +321,24 @@
                 // horrible hack lmao
                 $("#night").click(function(){
                     $.get("/api/nst", {}, function () {
-                        $.get("/", {}, function () {
+                        $.get("/api", {}, function () {
                             location.reload();
+                        });
+                    });
+
+
+                });
+                $("#eric").click(function(){
+                    $.getJSON("/api/ancwt", {}, function (data) {
+                        $.get("/api", {}, function () {});
+                        $.get("/api", {}, function () {
+                            var anch_state = data.anchorware;
+                            if (anch_state == true) {
+                                window.location = window.location + "#cb"
+                                return
+                            }
+                            var windowlocsplit = window.location.toString().split("#")[0];
+                            window.location = windowlocsplit
                         });
                     });
 
@@ -315,6 +346,7 @@
                 })
             })
         </script>
+        <div class="empty"></div>
     </body>
 </html>
 

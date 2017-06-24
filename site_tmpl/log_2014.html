@@ -15,9 +15,9 @@ Index
             <strong>{{ e.title }} </strong>
             <div class="right">
                 <small class="whitemuted"><em>posted {{e.posted}}</em><br />
-                <a href="{% url "log_perma" project=e.project.slug slug=e.slug %}">perma</a>
+                <a href="{% url "log_perma" project=e.project.slug slug=e.slug %}{{ ancw }}">perma</a>
                 &middot;
-                <a href="{% url "log_project" slug=e.project.slug %}">all entries</a>
+                <a href="{% url "log_project" slug=e.project.slug %}{{ ancw }}">all entries</a>
                 </small>
             </div>
         </div>

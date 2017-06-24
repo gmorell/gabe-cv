@@ -46,7 +46,8 @@ urlpatterns = [
     url(r'^api', include(router.urls)),
     url(r'^api/ns$', views_api.set_nightshift_cookie, name="api-cookie-nightshift"),
     url(r'^api/nst', views_api.set_nightshift_toggle, name="api-cookie-nightshift-toggle"),
-    url(r'^api/projects', views_api.set_nightshift_toggle, name="api-cookie-nightshift-toggle"),
+    url(r'^api/ancwt', views_api.set_anchorware_toggle, name="api-cookie-anchorware-toggle"),
+    # url(r'^api/projects', views_api.set_nightshift_toggle, name="api-cookie-nightshift-toggle"),
 ]
 
 
