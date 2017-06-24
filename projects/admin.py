@@ -9,6 +9,7 @@ class ProjectLinkInline(admin.StackedInline):
     
     
 class ProjectAdmin(SortableAdmin):
+    list_display = ('name', 'slug', 'last_updated', 'display_class','parent')
     inlines = [ProjectLinkInline,]
     
     

@@ -1,13 +1,14 @@
 # Create your views here.
 import datetime
-import pytz
 
+import pytz
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from projects.models import Entry, Project
 
 datetime.datetime.now(pytz.utc)
+
 
 def log(request,page=1):
     c = {}
@@ -28,6 +29,7 @@ def log_perma(request,project,slug,v2014=True):
     
     return render(request, 'log_perma_2014_2.html', c)
 
+
 def log_project(request,slug):
     c = {}
     
@@ -40,6 +42,7 @@ def log_project(request,slug):
     c['project'] = p
     c['children'] = p.children.all()
     return render(request, 'log_project_2014.html', c)
+
 
 def project_list(request):
     c = {}
