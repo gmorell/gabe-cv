@@ -12,14 +12,35 @@ Index - {{ project }}
         <h2> {{ project }} </h2>
         <p class="lead">{{ project.blurb }}</p>
     </div>
+    {% if project.parent %}
+        <div class="large-12 columns project-head">
+            <h5> Parent </h5>
+            <a href="{% url "log_project" slug=project.parent.slug %}" class="button round small">{{ project.parent }}</a>
+        </div>
+    {% endif %}
+    {% if children %}
+    <div class="large-12 columns project-head">
+        <h5><i class="fa fa-caret-right"></i> Subprojects </h5>
+        {% for c in children %}
+            <a href="{% url "log_project" slug=c.slug %}" class="button round small">{{ c }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
         
     {% for e in entries %}
     <div class="large-12 columns boxxy">
         <div class="boxxytop {{project.display_class}} ns_mixin_test_head">
             <strong>{{ e.title }}</strong>
             <div class="right">
-                <small class="whitemuted"><em>posted {{e.posted}}</em><br />
+                <small class="whitemuted"><em>posted {{e.posted}}</em>
+
+                <br />
+
+                    <a href="{% url "log_project" slug=e.project.slug %}">under {{ e.project.slug }}</a>
+                &middot;
                 <a href="{% url "log_perma" e.project.slug e.slug %}">perma</a>
+
                 </small>
             </div>
         </div>
@@ -28,6 +49,16 @@ Index - {{ project }}
                 {{ e.body|inline_thumbnails|inline_article_row_s|inline_article_row_e|hl8markdown|safe }}
         </div>
         
+    </div>
+    {% empty %}
+    <div class="large-12 columns boxxy">
+        <div class="boxxytop bh_dots ns_mixin_test_head">
+            <strong>No Entries</strong>
+        </div>
+
+        <div class="boxxybottom ns_mixin_test_body">
+                This project has no entries!
+        </div>
     </div>
     {% endfor %}
 </div>

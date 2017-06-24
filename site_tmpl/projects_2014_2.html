@@ -8,7 +8,7 @@
 {% for p in projects %}
     <div class="large-4 columns boxxy">
         <div class="boxxytop {{p.display_class}} ns_mixin_test_head">
-            <strong>{{ p.name }}</strong>
+            <strong><a href="{% url "log_project" p.slug %}">{{ p.name }}</a></strong>
             <div class="right">
                 {% for l in p.links.all %}
                 <a href="{{ l.url }}"><i class="fa fa-lg {{l.icon}}" title="github"></i></a>

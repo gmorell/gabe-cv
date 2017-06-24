@@ -20,6 +20,7 @@ class Project(SortableMixin, models.Model):
     display_class = models.CharField(max_length=32, default="bh_dots")
 
     display_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    parent = models.ForeignKey("self", null=True, blank=True, related_name="children", on_delete=models.SET_NULL, help_text="Until we figure out a better query structure, don't nest these more than three deep")
     
     def __unicode__(self):
         return self.name
