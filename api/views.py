@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from api.serializers import PageSerializer, CVSerializer, ProjectSerializer
+from api.serializers import PageSerializer, CVSerializer, ProjectSerializer, EntrySerializer
 from cv.models import Section
 from pages.models import Page
-from projects.models import Project
+from projects.models import Project, Entry
 from .serializers import NightShiftSerializer
 
 @api_view(['POST'])
@@ -72,3 +74,8 @@ class CVROViewSet(ReadOnlyModelViewSet):
 class ProjectViewSet(ReadOnlyModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class LogEntriesViewSet(ReadOnlyModelViewSet):
+    queryset = Entry.objects.filter(posted__lte=datetime.datetime.now())
+    serializer_class = EntrySerializer

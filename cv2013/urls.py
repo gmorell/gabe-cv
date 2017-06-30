@@ -15,6 +15,7 @@ router = DefaultRouter()
 router.register(r'pages', views_api.PageROViewSet)
 router.register(r'cv', views_api.CVROViewSet)
 router.register(r'projects', views_api.ProjectViewSet)
+router.register(r'log', views_api.LogEntriesViewSet)
 
 urlpatterns = [
     # Examples:
