@@ -61,8 +61,7 @@ INSTALLED_APPS = (
 
     'raven.contrib.django.raven_compat',
 
-    'rest_framework',
-    'rest_framework_cache',
+    'rest_framework'
 )
 
 MIDDLEWARE = (
