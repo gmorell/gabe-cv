@@ -15,10 +15,10 @@ DATABASES = {
 
 SECRET_KEY = env_var("DJ_SECRET_KEY")
 
-MEDIA_ROOT = '/home/gmorell/cv_media/'
+MEDIA_ROOT = env_var("DJ_APP_ROOT") + "/media/"
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = '/home/gmorell/cv_statics/'
+STATIC_ROOT = env_var("DJ_APP_ROOT") + "/static/"
 STATIC_URL = '/static/'
 
 PDF_HEADER = env_var("PDF_HEADER")
