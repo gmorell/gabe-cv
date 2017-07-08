@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.template import Context,RequestContext
+from django.template import RequestContext
+
 from cv.models import Section
+
 
 def index(request):
     context = {}
@@ -9,14 +11,13 @@ def index(request):
     
     return render(request, 'cv_2014_2.html', context)
 
-
-import cStringIO as StringIO
+try: # py2
+    import cStringIO as StringIO
+except: # py3k
+    from io import StringIO
 import xhtml2pdf.pisa as pisa
-from django.template.loader import get_template
-from django.template import Context
-from django.http import HttpResponse
 from cgi import escape
-from reportlab.pdfgen import canvas
+
 
 def render_to_pdf(template_src, context_dict):
     template = get_template(template_src)
