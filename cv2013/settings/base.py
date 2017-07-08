@@ -174,11 +174,13 @@ PDF_CONTACT = "SET PDF_CONTACT"
 SITE_ID=1
 GA_TRACKING_ID = None
 
-try:
-    local_settings_file = open(here('local_settings.py'), 'r')
-    local_settings_script = local_settings_file.read()
-    exec(local_settings_script)
-except IOError as e:
-    print("Unable to open local settings! %s" % e)
+def env_var(key, default=None):
+    """Retrieves env vars and makes Python boolean replacements"""
+    val = os.environ.get(key, default)
+    if val == 'True':
+        val = True
+    elif val == 'False':
+        val = False
+    return val
 
 
