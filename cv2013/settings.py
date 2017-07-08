@@ -177,8 +177,8 @@ GA_TRACKING_ID = None
 try:
     local_settings_file = open(here('local_settings.py'), 'r')
     local_settings_script = local_settings_file.read()
-    exec local_settings_script
+    exec(local_settings_script)
 except IOError, e:
-    print "Unable to open local settings! %s" % e
+    print("Unable to open local settings! %s" % e)
 
 
