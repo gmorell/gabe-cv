@@ -15,10 +15,10 @@ DATABASES = {
 
 SECRET_KEY = env_var("DJ_SECRET_KEY")
 
-MEDIA_ROOT = env_var("DJ_APP_ROOT") + "/media/"
+MEDIA_ROOT = env_var("DJ_APP_ROOT") + "www/media/"
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = env_var("DJ_APP_ROOT") + "/static/"
+STATIC_ROOT = env_var("DJ_APP_ROOT") + "www/static/"
 STATIC_URL = '/static/'
 
 PDF_HEADER = env_var("PDF_HEADER")
