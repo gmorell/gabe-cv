@@ -16,6 +16,7 @@ here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -139,7 +140,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    here('../static/'),
+    os.path.join(BASE_DIR, '..', "static"),
 )
 
 # MARKDOWN
