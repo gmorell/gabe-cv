@@ -11,7 +11,7 @@ def nightshift_tmpl(request):
 
 def anchorware_tmpl(request):
     if request.session.get('anchorware', "False") == "True":
-        print type(request.session.get('anchorware', 'XXX'))
+        print(type(request.session.get('anchorware', 'XXX')))
         return {"ancw": "#cb"}
     print("FFF")
     return {"ancw":""}
