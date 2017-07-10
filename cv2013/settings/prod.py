@@ -32,6 +32,8 @@ RAVEN_CONFIG = {
 }
 
 
-GA_TRACKING_ID= env_var("DJ_GA_ID")
+GA_TRACKING_ID = env_var("DJ_GA_ID")
 
 SITE_URL = env_var("DJ_SITE_URL")
+
+DEBUG=False
