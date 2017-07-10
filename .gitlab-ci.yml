@@ -6,7 +6,7 @@ deploy_staging:
   script:
     - echo $staging_env > environ
     - tr '\r' '\n' < environ | sed 's/^[ \t]*//;s/[ \t]*$//' > deploy/environ
-    - ansible-playbook -i staging site.yml
+    - ansible-playbook -i staging deploy/site.yml
   environment:
     name: staging
     url: https://2.gmp.io
@@ -18,7 +18,7 @@ deploy_prod:
   script:
     - echo $prod_env > environ
     - tr '\r' '\n' < environ | sed 's/^[ \t]*//;s/[ \t]*$//' > deploy/environ
-    - ansible-playbook -i production site.yml
+    - ansible-playbook -i production deploy/site.yml
   environment:
     name: production
     url: https://gmp.io
