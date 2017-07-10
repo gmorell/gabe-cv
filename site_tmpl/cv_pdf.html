@@ -54,7 +54,7 @@
             {% for e in s.pdfable_entries %}
                 <tr class="largerow">
                     <td colspan="5">
-                        <strong>{{ e }}</strong>
+                        <strong>{{ e.title }}</strong>
                         <div class="entry">{{ e.desc|markdown }}</div>
                     </td>
                     <td valign="top">
