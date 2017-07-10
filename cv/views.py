@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.template import RequestContext
 
 from cv.models import Section
 
@@ -84,7 +83,7 @@ def link_callback(uri, rel):
 
 def index_as_pdf(request):
     
-    context = RequestContext(request)
+    context = {}
     sections = Section.objects.all()
     context['sects'] = sections
     context['PDF_HEADER'] = settings.PDF_HEADER
