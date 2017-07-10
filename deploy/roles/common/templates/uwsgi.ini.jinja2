@@ -1,0 +1,13 @@
+[uwsgi]
+socket = 127.0.0.1:{{ site_uwsgi_port }}
+workers = {{ site_worker_count }}
+master = true
+chdir={{ site_home }}/{{ site_git_dir }}
+virtualenv={{ site_home }}/venv/
+module=cv2013.wsgi
+vacumn=true
+env=DJANGO_SETTINGS_MODULE=cv2013.settings.prod
+enable-threads=true
+for-readline = {{ site_home }}/{{ site_git_dir }}/.env
+  env = %(_)
+endfor =

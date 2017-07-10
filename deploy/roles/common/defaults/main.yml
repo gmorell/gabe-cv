@@ -1,0 +1,20 @@
+---
+site_url: 2.gmp.io
+site_home: /opt/gmpdotio
+site_git_url: https://g.gmp.io/gmorell/gabe-cv.git
+site_git_key: None
+site_git_dir: gabecv
+site_user: gmpdotio
+site_worker_count: 4
+site_uwsgi_port: 9300
+
+site_postgres_host: None
+
+site_nginx_ssl: True
+site_nginx_ssl_home: /opt/letsencrypt
+site_nginx_ssl_root: /var/www/letsencrypt
+site_nginx_ssl_email: "gmp@gmp.io"
+
+site_logdir: "{{ site_home }}/log/"
+site_media_dir: "{{ site_home }}/www/media/"
+site_static_dir: "{{ site_home }}/www/static/"

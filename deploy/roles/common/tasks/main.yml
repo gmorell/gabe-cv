@@ -1,0 +1,139 @@
+---
+- name: Dependencies
+  apt: pkg={{item}} state=installed update_cache=yes
+  with_items:
+     - ca-certificates
+     - curl
+     - git
+     - libpq-dev
+     - libjpeg-dev
+     - libssl-dev
+     - nginx
+     - ntpdate
+     - python3-dev
+     - python3-pip
+     - python3-setuptools
+#     - python3-virtualenv
+#     - python3-venv
+     - supervisor
+     - libghc-zlib-dev
+
+- name: certbot from backports
+  apt:
+    name: certbot
+    state: latest
+    default_release: stretch-backports
+    update_cache: yes
+
+- name: Create our user
+  user: name={{ site_user }} shell=/sbin/nologin createhome=no
+
+- name: Setup a working directory
+  file: path={{ site_home }} state=directory mode=755 owner={{ site_user }}
+
+- name: copy environ file
+  copy:
+    src: environ
+    dest: "{{site_home}}/{{ site_git_dir }}/.env"
+    owner: "{{ site_user }}"
+
+- name: Git Clone
+  git: repo={{ site_git_url }} dest={{ site_home }}/{{ site_git_dir }} update=yes force=yes accept_hostkey=True
+
+- name: make a default
+  set_fact:
+    python_bin: "python3"
+    python_venv: "{{ site_home }}/venv/"
+    python_reqs: "{{ site_home }}/{{ site_git_dir }}/requirements.txt"
+
+
+- name: PIP - Reqs
+  pip:
+    requirements: "{{ python_reqs }}"
+    virtualenv:  "{{ python_venv }}"
+#    virtualenv_python: "{{ python_bin }}"
+    virtualenv_command: "pyvenv"
+
+- name: PIP - UWSGI
+  pip:
+    virtualenv:  "{{ python_venv }}"
+    name: uwsgi
+    
+# create other directories
+- name: Setup a media directory
+  file: path={{ site_home }}/www/media/ state=directory mode=755 owner={{ site_user }} recurse=yes
+
+- name: Setup a static directory
+  file: path={{ site_home }}/www/static/ state=directory mode=755 owner={{ site_user }} recurse=yes
+  
+- name: Setup a log directory
+  file: path={{ site_home }}/log/ state=directory mode=744 owner={{ site_user }} recurse=yes
+
+# configurations
+- name: write nginx config (sans ssl)
+  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/gmpdotio.conf mode=0644 owner={{ site_user }}
+  notify:
+  - restart nginx
+  vars:
+    disable_ssl: True
+  
+- name: Setup a certbot directory
+  file: path={{ site_nginx_ssl_home }} state=directory
+
+- name: setup the acme root thing
+  file: path={{site_nginx_ssl_root}} state=directory
+
+- name: run certbot
+  command: "certbot certonly --non-interactive --webroot -w {{ site_nginx_ssl_root }} -d {{ site_url }} -m {{ site_nginx_ssl_email }} --agree-tos --text"
+  args:
+    creates: /etc/letsencrypt/renewal/{{ site_url }}.conf
+
+- name: ensure we have a LE cron
+  cron: name="le cron" minute="42" hour="6,18" job="/opt/letsencrypt/certbot-auto renew"
+
+- name: write nginx config (with ssl)
+  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/gmpdotio.conf mode=0644 owner={{ site_user }}
+  notify:
+  - restart nginx
+  vars:
+    disable_ssl: False
+
+- name: write uwsgi config
+  template: src=templates/uwsgi.ini.jinja2 dest={{ site_home }}/uwsgi.ini mode=0644 owner={{ site_user }}
+
+- name: write supervisor config
+  template: src=templates/supervisor.conf.jinja2 dest=/etc/supervisor/conf.d/{{ site_url }}.conf mode=0644 owner={{ site_user }}
+  
+- name: django static
+  django_manage:
+    command=collectstatic
+    app_path="{{site_home}}/{{ site_git_dir }}/"
+    settings=cv2013.settings.prod
+    pythonpath="{{ site_home }}/"
+    virtualenv="{{ python_venv }}"
+
+- name: django migrate
+  django_manage:
+    command=migrate
+    app_path="{{site_home}}/{{ site_git_dir }}/"
+    settings=cv2013.settings.prod
+    pythonpath="{{ site_home }}/"
+    virtualenv="{{ python_venv }}"
+
+- name: static Permissions
+  file: path={{ site_home }}/www/ state=directory mode=755 owner={{ site_user }} group=www-data recurse=true
+
+- name: make sure supervisor is started
+  service: name=supervisor state=started
+  ignore_errors: True
+
+- name: make sure supervisor is reloaded
+  service: name=supervisor state=reloaded
+  ignore_errors: True
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart service
+  supervisorctl: name="{{ site_url|replace(".","_")}}" state=restarted
+  ignore_errors: True

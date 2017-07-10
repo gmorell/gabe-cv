@@ -1,0 +1,6 @@
+[program:{{ site_url|replace(".","_")}}]
+user={{ site_user }}
+command={{ site_home }}/venv/bin/uwsgi --ini {{ site_home }}/uwsgi.ini
+autostart=true
+autorestart=true
+stopsignal=INT

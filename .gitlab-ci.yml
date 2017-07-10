@@ -1,0 +1,35 @@
+stages:
+  - deploy
+
+test:
+  stage: test
+  script: echo "Running tests"
+
+build:
+  stage: build
+  script: echo "Building the app"
+
+deploy_staging:
+  stage: deploy
+  script:
+    - echo $staging_env > environ
+    - tr '\r' '\n' < environ | sed 's/^[ \t]*//;s/[ \t]*$//' > deploy/environ
+    - ansible-playbook -i staging site.yml
+  environment:
+    name: staging
+    url: https://2.gmp.io
+  only:
+  - master
+
+deploy_prod:
+  stage: deploy
+  script:
+    - echo $prod_env > environ
+    - tr '\r' '\n' < environ | sed 's/^[ \t]*//;s/[ \t]*$//' > deploy/environ
+    - ansible-playbook -i production site.yml
+  environment:
+    name: production
+    url: https://gmp.io
+  when: manual
+  only:
+  - master
