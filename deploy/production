@@ -2,4 +2,5 @@
 gmp.io
 
 [web:vars]
-site_url = 2.gmp.io
+site_url=gmp.io
+site_home=/opt/gmpdotio_prod
