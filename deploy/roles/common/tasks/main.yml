@@ -31,14 +31,14 @@
 - name: Setup a working directory
   file: path={{ site_home }} state=directory mode=755 owner={{ site_user }}
 
+- name: Git Clone
+  git: repo={{ site_git_url }} dest={{ site_home }}/{{ site_git_dir }} update=yes force=yes accept_hostkey=True
+
 - name: copy environ file
   copy:
     src: environ
     dest: "{{site_home}}/{{ site_git_dir }}/.env"
     owner: "{{ site_user }}"
-
-- name: Git Clone
-  git: repo={{ site_git_url }} dest={{ site_home }}/{{ site_git_dir }} update=yes force=yes accept_hostkey=True
 
 - name: make a default
   set_fact:
