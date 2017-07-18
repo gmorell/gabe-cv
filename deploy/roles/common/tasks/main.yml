@@ -92,7 +92,7 @@
   cron: name="le cron" minute="42" hour="6,18" job="/opt/letsencrypt/certbot-auto renew"
 
 - name: write nginx config (with ssl)
-  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/gmpdotio.conf mode=0644 owner={{ site_user }}
+  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/{{ site_url|replace(".","dot")}}.conf mode=0644 owner={{ site_user }}
   notify:
   - restart nginx
   vars:
