@@ -71,7 +71,7 @@
 
 # configurations
 - name: write nginx config (sans ssl)
-  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/gmpdotio.conf mode=0644 owner={{ site_user }}
+  template: src=templates/nginx.conf.jinja2 dest=/etc/nginx/conf.d/{{ site_url|replace(".","dot")}}.conf mode=0644 owner={{ site_user }}
   notify:
   - restart nginx
   vars:
