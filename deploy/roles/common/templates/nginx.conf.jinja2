@@ -24,7 +24,7 @@ server {
 
     # Finally, send all non-media requests to the Django server.
     location / {
-        uwsgi_pass  django_app;
+        uwsgi_pass  django_app_{{ site_url|replace(".","dot")}};
         include   uwsgi_params; # the uwsgi_params file you installed
     }
 
@@ -57,7 +57,7 @@ server {
             # Finally, send all non-media requests to the Django server.
     
         location / {
-            uwsgi_pass  django_app;
+            uwsgi_pass  django_app_{{ site_url|replace(".","dot")}};
             include   uwsgi_params; # the uwsgi_params file you installed
         }
 
